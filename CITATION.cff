@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use OPD-study, please cite the repository and the original papers relevant to your method."
+title: "OPD-study: A bilingual course and reference implementation for on-policy distillation"
+type: software
+version: 0.1.0-dev
+date-released: 2026-08-19
+license: Apache-2.0
+repository-code: "https://github.com/BangProx/OPD-study"
+authors:
+  - family-names: "OPD-study contributors"
+keywords:
+  - on-policy distillation
+  - knowledge distillation
+  - language models
+  - education
+preferred-citation:
+  type: software
+  title: "OPD-study"
+  authors:
+    - family-names: "OPD-study contributors"
+  year: 2026
+  url: "https://github.com/BangProx/OPD-study"

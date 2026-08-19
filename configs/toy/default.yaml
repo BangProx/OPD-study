@@ -1,0 +1,38 @@
+schema_version: 1
+profile: toy
+backend: mini
+algorithm:
+  name: opd
+  divergence: reverse_kl
+  lambda_on_policy: 1.0
+  beta_jsd: 1.0
+  temperature: 1.0
+data:
+  id: tiny_arithmetic
+  revision: generated-v1
+  license: generated/Apache-2.0
+  seed: 42
+  train_rows: 4096
+  validation_rows: 512
+  test_rows: 512
+model:
+  student: tiny-student
+  teacher: tiny-teacher
+  finetuning: full
+  trust_remote_code: false
+training:
+  seed: 42
+  steps: 20
+  batch_size: 8
+  tokens_per_step: 64
+  learning_rate: 0.0003
+  device: auto
+  allow_device_fallback: false
+  precision: float32
+evaluation:
+  rows: 16
+  max_new_tokens: 64
+  k_values: [1, 2, 4, 8]
+output:
+  root: artifacts/demo
+  tensorboard: true

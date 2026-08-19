@@ -1,0 +1,78 @@
+[build-system]
+requires = ["packaging>=24.2", "setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opd-study"
+version = "0.1.0.dev0"
+description = "A bilingual, notebook-first course and reference implementation for on-policy distillation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{name = "OPD-study contributors"}]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Education",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "matplotlib>=3.7",
+  "packaging>=23",
+  "PyYAML>=6.0",
+  "tensorboard>=2.13",
+  "torch>=2.1,<3",
+]
+
+[project.optional-dependencies]
+notebooks = ["ipykernel>=6.25", "nbclient>=0.8", "nbformat>=5.9"]
+research = [
+  "accelerate>=1.2,<2",
+  "datasets>=3.2,<5",
+  "peft>=0.14,<1",
+  "torch>=2.2,<3",
+  "transformers>=4.51,<5",
+]
+qlora = ["bitsandbytes>=0.45,<1; platform_system != 'Darwin'"]
+dev = [
+  "mypy>=1.11",
+  "pytest>=8.2",
+  "pytest-cov>=5",
+  "ruff>=0.6",
+  "types-PyYAML>=6.0",
+]
+
+[project.scripts]
+opd-study = "opd_study.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-config --strict-markers"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+# These two files intentionally contain long notebook cell source and learner prose.
+"scripts/build_colab.py" = ["E501"]
+"scripts/build_notebooks.py" = ["E501", "RUF001"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+packages = ["opd_study"]
+ignore_missing_imports = true
+# PyTorch 2.1's bundled annotations expose several Tensor-returning operations as
+# Any/untyped. Keep strict project typing while isolating those third-party stub gaps.
+disable_error_code = ["no-any-return", "no-untyped-call"]

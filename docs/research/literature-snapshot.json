@@ -1,0 +1,87 @@
+{
+  "generated_at": "2026-08-19T08:49:20.996519+00:00",
+  "papers": [
+    {
+      "githubRepo": null,
+      "locked_arxiv": "2306.13649v3",
+      "lookup_error": null,
+      "lookup_status": "available",
+      "publishedAt": "2023-06-23T17:56:26.000Z",
+      "source_id": "gkd",
+      "title": "On-Policy Distillation of Language Models: Learning from Self-Generated\n  Mistakes"
+    },
+    {
+      "githubRepo": "https://github.com/kokolerk/TCOD",
+      "locked_arxiv": "2604.24005v3",
+      "lookup_error": null,
+      "lookup_status": "available",
+      "publishedAt": "2026-04-27T00:00:00.000Z",
+      "source_id": "tcod",
+      "title": "TCOD: Exploring Temporal Curriculum in On-Policy Distillation for Multi-turn Autonomous Agents"
+    },
+    {
+      "githubRepo": null,
+      "locked_arxiv": "2605.07725v3",
+      "lookup_error": null,
+      "lookup_status": "available",
+      "publishedAt": "2026-05-08T00:00:00.000Z",
+      "source_id": "sod",
+      "title": "SOD: Step-wise On-policy Distillation for Small Language Model Agents"
+    },
+    {
+      "githubRepo": null,
+      "locked_arxiv": "2606.19659v1",
+      "lookup_error": "HTTP 404 from Hugging Face Papers API",
+      "lookup_status": "not-indexed",
+      "publishedAt": null,
+      "source_id": "sage_opd",
+      "title": null
+    },
+    {
+      "githubRepo": "https://github.com/thunlp/OPD",
+      "locked_arxiv": "2604.13016v2",
+      "lookup_error": null,
+      "lookup_status": "available",
+      "publishedAt": "2026-04-14T00:00:00.000Z",
+      "source_id": "rethinking_opd",
+      "title": "Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe"
+    },
+    {
+      "githubRepo": null,
+      "locked_arxiv": "2605.07865v1",
+      "lookup_error": null,
+      "lookup_status": "available",
+      "publishedAt": "2026-05-08T00:00:00.000Z",
+      "source_id": "vopd",
+      "title": "KL for a KL: On-Policy Distillation with Control Variate Baseline"
+    },
+    {
+      "githubRepo": "https://github.com/naver-ai/opd2",
+      "locked_arxiv": "2607.15161v1",
+      "lookup_error": null,
+      "lookup_status": "available",
+      "publishedAt": "2026-07-16T00:00:00.000Z",
+      "source_id": "opd2",
+      "title": "On-Policy Delta Distillation"
+    },
+    {
+      "githubRepo": null,
+      "locked_arxiv": "2608.05802v1",
+      "lookup_error": null,
+      "lookup_status": "available",
+      "publishedAt": "2026-08-06T00:00:00.000Z",
+      "source_id": "opd2_multilingual",
+      "title": "On-Policy Delta Distillation for Multilingual Math Reasoning"
+    },
+    {
+      "githubRepo": null,
+      "locked_arxiv": "2608.11829v1",
+      "lookup_error": "HTTP 404 from Hugging Face Papers API",
+      "lookup_status": "not-indexed",
+      "publishedAt": null,
+      "source_id": "opd_test_time_scaling",
+      "title": null
+    }
+  ],
+  "scope_changes_automatically": false
+}

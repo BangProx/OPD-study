@@ -1,0 +1,147 @@
+schema_version: 1
+audited_at: "2026-08-19T00:00:00+09:00"
+project_license: Apache-2.0
+
+papers:
+  - id: gkd
+    arxiv: 2306.13649v3
+    url: https://arxiv.org/abs/2306.13649v3
+    paper_license: CC-BY-4.0
+    required: true
+  - id: tcod
+    arxiv: 2604.24005v3
+    url: https://arxiv.org/abs/2604.24005v3
+    paper_license: CC-BY-4.0
+    required: true
+  - id: sod
+    arxiv: 2605.07725v3
+    url: https://arxiv.org/abs/2605.07725v3
+    paper_license: arXiv-non-exclusive-distribution-1.0
+    required: true
+  - id: sage_opd
+    arxiv: 2606.19659v1
+    url: https://arxiv.org/abs/2606.19659v1
+    paper_license: CC-BY-4.0
+    required: true
+  - id: rethinking_opd
+    arxiv: 2604.13016v2
+    url: https://arxiv.org/abs/2604.13016v2
+    paper_license: CC-BY-4.0
+    approval_status: approved
+  - id: vopd
+    arxiv: 2605.07865v1
+    url: https://arxiv.org/abs/2605.07865v1
+    paper_license: CC-BY-4.0
+    approval_status: approved
+  - id: opd2
+    arxiv: 2607.15161v1
+    url: https://arxiv.org/abs/2607.15161v1
+    paper_license: CC-BY-4.0
+    approval_status: approved
+  - id: opd2_multilingual
+    arxiv: 2608.05802v1
+    url: https://arxiv.org/abs/2608.05802v1
+    paper_license: CC-BY-4.0
+    approval_status: approved
+  - id: opd_test_time_scaling
+    arxiv: 2608.11829v1
+    url: https://arxiv.org/abs/2608.11829v1
+    paper_license: arXiv-non-exclusive-distribution-1.0
+    approval_status: approved
+
+code_sources:
+  - id: trl_gkd_reference
+    repository: https://github.com/huggingface/trl
+    revision: 1e3ba4e80dfd8c64f11022a7ae47de6a58255ca5
+    license: Apache-2.0
+    reuse: behavioral-cross-check
+  - id: tcod_official
+    repository: https://github.com/kokolerk/TCOD
+    revision: 465eef4406ad0cff675b36bd46f37f28b1736ff9
+    license: Apache-2.0
+    reuse: minimal-semantic-port-with-notice
+  - id: sod_official
+    repository: https://github.com/YoungZ365/SOD
+    revision: 110c4b8e843aee274d3cd648199569369ee2403e
+    license: Apache-2.0
+    reuse: minimal-semantic-port-after-paper-code-diff
+    warning: "Paper v3 postdates the pinned code commit."
+  - id: sage_opd_official
+    repository: null
+    revision: null
+    license: null
+    reuse: clean-room-from-paper
+  - id: rethinking_opd_official
+    repository: https://github.com/thunlp/OPD
+    revision: 4532fd35ccfdde82adc918b265e4c964534e83d1
+    license: null
+    reuse: clean-room-from-paper-only
+    warning: "No top-level LICENSE found at audit time; do not copy code."
+  - id: vopd_official
+    repository: https://github.com/Riasok/vOPD
+    revision: null
+    license: null
+    reuse: clean-room-from-paper
+    warning: "Author project page links this URL, but it returned 404 at audit time."
+  - id: opd2_official
+    repository: https://github.com/naver-ai/opd2
+    revision: 2dac53fbc80673677fb3bd1d8690392761ee3e52
+    license: Apache-2.0
+    reuse: minimal-semantic-port-with-notice
+  - id: opd_test_time_scaling_official
+    repository: null
+    revision: null
+    license: null
+    reuse: clean-room-metrics-from-paper
+
+datasets:
+  - id: openai/gsm8k
+    config: main
+    revision: 740312add88f781978c0658806c59bc2815b9866
+    license: MIT
+    rows: {train: 7473, test: 1319}
+    parquet_bytes: 2725633
+    role: primary-real-train-eval
+  - id: EleutherAI/hendrycks_math
+    config: all-seven-configs
+    revision: 21a5633873b6a120296cce3e2df9d5550074f4a3
+    license: MIT
+    rows: {train: 7500, test: 5000}
+    parquet_bytes: 4883857
+    role: advanced-eval-server-train
+  - id: open-r1/OpenR1-Math-220k
+    config: default
+    revision: e4e141ec9dea9f8326f4d347be56105859b2bd68
+    license: Apache-2.0
+    rows: {train: 93733}
+    parquet_bytes: 2149897914
+    role: optional-server-train
+    requires_explicit_download_acceptance: true
+  - id: roneneldan/TinyStories
+    config: default
+    revision: f54c09fd23315a6f9c86f9dc80f725de7d8f9c64
+    license: CDLA-Sharing-1.0
+    rows: {train: 2119719, validation: 21990}
+    parquet_bytes: 1000775442
+    role: optional-lm-foundations-example
+    requires_explicit_download_acceptance: true
+
+models:
+  - id: Qwen/Qwen3-0.6B
+    revision: c1899de289a04d12100db370d81485cdf75e47ca
+    license: Apache-2.0
+    parameters: 751632384
+    approximate_bf16_weight_bytes: 1503264768
+    role: laptop-student
+  - id: Qwen/Qwen3-1.7B
+    revision: 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e
+    license: Apache-2.0
+    parameters: 2031739904
+    approximate_bf16_weight_bytes: 4063479808
+    role: laptop-teacher
+  - id: Qwen/Qwen3-4B
+    revision: 1cfa9a7208912126459214e8b04321603b3df60c
+    license: Apache-2.0
+    parameters: 4022468096
+    approximate_bf16_weight_bytes: 8044936192
+    role: server-teacher

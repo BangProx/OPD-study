@@ -1,0 +1,13 @@
+OPD-study
+Copyright 2026 BangProx and OPD-study contributors
+
+This product is licensed under the Apache License, Version 2.0.
+
+No third-party source file is vendored or copied into the project package. Research
+papers and pinned Apache-2.0 repositories were used for clean-room equations,
+behavioral cross-checks, and semantic comparison. Exact versions and reuse decisions
+are tracked in docs/sources.yml and docs/third-party-notices.md.
+
+Referenced Apache-2.0 projects include Hugging Face TRL, kokolerk/TCOD,
+YoungZ365/SOD, and naver-ai/opd2. Their source code and model artifacts are not
+redistributed by OPD-study. Downloaded datasets and models retain their own licenses.
