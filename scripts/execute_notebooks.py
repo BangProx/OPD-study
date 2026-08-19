@@ -35,15 +35,18 @@ def execute(path: Path, timeout: int) -> float:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--language", choices=["ko", "en", "all"], default="all")
+    parser.add_argument("--language", choices=["ko", "en", "all", "colab"], default="all")
     parser.add_argument("--timeout", type=int, default=180)
     arguments = parser.parse_args()
-    languages = ("ko", "en") if arguments.language == "all" else (arguments.language,)
-    paths = [
-        path
-        for language in languages
-        for path in sorted((REPOSITORY / "notebooks" / language).glob("*.ipynb"))
-    ]
+    if arguments.language == "colab":
+        paths = [REPOSITORY / "notebooks/colab/quickstart.ipynb"]
+    else:
+        languages = ("ko", "en") if arguments.language == "all" else (arguments.language,)
+        paths = [
+            path
+            for language in languages
+            for path in sorted((REPOSITORY / "notebooks" / language).glob("*.ipynb"))
+        ]
     for path in paths:
         duration = execute(path, arguments.timeout)
         print(f"{path.relative_to(REPOSITORY)}: {duration:.2f}s")

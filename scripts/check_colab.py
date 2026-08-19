@@ -16,6 +16,12 @@ def main() -> int:
     assert metadata["lesson_id"] == "COLAB-QUICKSTART"
     code_cells = [cell for cell in notebook.cells if cell.cell_type == "code"]
     assert code_cells
+    setup_cell = next(
+        cell
+        for cell in code_cells
+        if cell.metadata["opd_study"]["cell_id"] == "COLAB-S02"
+    )
+    assert "sys.path.insert(0, str(repo_root / 'src'))" in setup_cell.source
     assert all(cell.execution_count is not None for cell in code_cells)
     assert not any(
         output.output_type == "error"

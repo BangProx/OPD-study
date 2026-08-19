@@ -47,12 +47,18 @@ def main() -> None:
                 "            'https://github.com/BangProx/OPD-study.git', str(repo_root)])\n"
                 "    subprocess.check_call([sys.executable, '-m', 'pip', 'install',\n"
                 "        '-e', str(repo_root)])\n"
-                "else:\n    print('Local validation: using repository src/; no network call.')",
+                "else:\n"
+                "    repo_root = Path.cwd()\n"
+                "    if not (repo_root / 'src').exists():\n"
+                "        repo_root = Path.cwd().parents[1]\n"
+                "    print('Local validation: using repository src/; no network call.')\n"
+                "# An editable install writes a .pth hook that this already-running Colab kernel\n"
+                "# does not process until restart, so make the freshly cloned source importable now.\n"
+                "sys.path.insert(0, str(repo_root / 'src'))",
             ),
             code(
                 "COLAB-S03",
                 "demo",
-                "from pathlib import Path\nif not IN_COLAB:\n    repo_root = Path.cwd()\n    if not (repo_root / 'src').exists():\n        repo_root = Path.cwd().parents[1]\n    sys.path.insert(0, str(repo_root / 'src'))\n"
                 "from opd_study.demo import run_demo\nprint('OPD-study imported')",
             ),
             code(
