@@ -19,8 +19,8 @@ jobs:
           cache: pip
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e ".[dev,notebooks]"
-      - run: jupyter nbconvert --to notebook --execute --inplace notebooks/ko/*.ipynb --ExecutePreprocessor.timeout=180
-      - run: jupyter nbconvert --to notebook --execute --inplace notebooks/en/*.ipynb --ExecutePreprocessor.timeout=180
+      - run: python scripts/execute_notebooks.py --language ko --timeout 180
+      - run: python scripts/execute_notebooks.py --language en --timeout 180
       - run: python scripts/check_notebooks.py --require-executed
       - run: python scripts/check_colab.py
       - run: python scripts/check_links.py
