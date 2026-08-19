@@ -69,7 +69,8 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 "scripts/build_notebooks.py" = ["E501", "RUF001"]
 
 [tool.mypy]
-python_version = "3.10"
+# Match the invoking interpreter. The Python 3.10 CI jobs enforce the minimum
+# supported syntax while 3.12 jobs can parse installed dependencies' 3.12 stubs.
 strict = true
 packages = ["opd_study"]
 ignore_missing_imports = true
