@@ -54,7 +54,23 @@ def main() -> None:
                 "    print('Local validation: using repository src/; no network call.')\n"
                 "# An editable install writes a .pth hook that this already-running Colab kernel\n"
                 "# does not process until restart, so make the freshly cloned source importable now.\n"
-                "sys.path.insert(0, str(repo_root / 'src'))",
+                "sys.path.insert(0, str(repo_root / 'src'))\n\n"
+                "def remove_incompatible_colab_torchao():\n"
+                "    \"\"\"Remove an optional Colab package that breaks current Transformers.\"\"\"\n"
+                "    if not IN_COLAB:\n"
+                "        return None\n"
+                "    from importlib.metadata import PackageNotFoundError, version\n"
+                "    from packaging.version import Version\n"
+                "    try:\n"
+                "        installed = version('torchao')\n"
+                "    except PackageNotFoundError:\n"
+                "        return None\n"
+                "    if Version(installed) >= Version('0.16'):\n"
+                "        return None\n"
+                "    subprocess.check_call([sys.executable, '-m', 'pip', 'uninstall',\n"
+                "        '-y', 'torchao'])\n"
+                "    print(f'Removed incompatible optional Colab torchao {installed}.')\n"
+                "    return installed",
             ),
             code(
                 "COLAB-S03",
@@ -88,7 +104,10 @@ def main() -> None:
                 "Enabling it accepts the MIT GSM8K and Apache-2.0 Qwen terms and permits "
                 "about 5.57GB of pinned weights plus 2.73MB of data. Use a CUDA runtime; "
                 "each successful one-step update is a plumbing check, not a benchmark result. "
-                "Run LoRA first, then QLoRA; both subprocesses reuse the same download cache.",
+                "Run LoRA first, then QLoRA; both subprocesses reuse the same download cache. "
+                "The opt-in cells remove `torchao<0.16` when a Colab image preinstalls it: "
+                "OPD-study does not use torchao, and that optional version is incompatible "
+                "with the current Transformers runtime.",
             ),
             code(
                 "COLAB-L02",
@@ -101,6 +120,7 @@ def main() -> None:
                 "        raise RuntimeError('Select a CUDA runtime before LoRA.')\n"
                 "    subprocess.check_call([sys.executable, '-m', 'pip', 'install',\n"
                 "        '-e', f'{repo_root}[research]'])\n"
+                "    remove_incompatible_colab_torchao()\n"
                 "    subprocess.check_call([sys.executable, '-m', 'opd_study',\n"
                 "        'research-train', '--config',\n"
                 "        str(repo_root / 'configs/laptop/gsm8k_lora.yaml'),\n"
@@ -134,6 +154,7 @@ def main() -> None:
                 "        raise RuntimeError('Select a CUDA runtime before QLoRA.')\n"
                 "    subprocess.check_call([sys.executable, '-m', 'pip', 'install',\n"
                 "        '-e', f'{repo_root}[research,qlora]'])\n"
+                "    remove_incompatible_colab_torchao()\n"
                 "    subprocess.check_call([sys.executable, '-m', 'opd_study',\n"
                 "        'research-train', '--config',\n"
                 "        str(repo_root / 'configs/laptop/gsm8k_qlora.yaml'),\n"

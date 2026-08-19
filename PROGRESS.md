@@ -143,3 +143,27 @@
 - GitHub CLI는 Homebrew로 설치했지만 아직 GitHub 인증 세션이 없다. 게시 지침에
   따라 `gh auth login` 완료 전에는 commit/push를 진행하지 않는다. 인증 뒤 원격
   CI와 hosted Colab 검증을 계속한다.
+
+## 2026-08-19 — C9 원격 CI와 hosted CUDA 검증
+
+- GitHub 인증 뒤 원격 초기 commit `6f1e395`를 부모로 보존해 `main`에
+  fast-forward 게시했다. core CI는 Linux/macOS/Windows × Python 3.10/3.12와
+  research import job을 통과했고, nightly는 한국어·영어 24개 notebook 재실행,
+  Colab/source/link/literature 검사와 artifact 업로드를 통과했다.
+- 게시된 Colab을 새 Tesla T4 런타임에서 실행하며 editable install 직후 현재
+  kernel이 `.pth`를 다시 읽지 않아 생기는 import 실패를 발견했다. clone의
+  `src`를 즉시 `sys.path`에 넣도록 수정하고 회귀 검사와 `--language colab`
+  실행 경로를 추가했다. 수정 commit `372c19f`의 hosted 기본 경로가 report,
+  PNG, TensorBoard까지 통과했다.
+- Colab 이미지의 PyTorch 2.11.0+cu128/Transformers 4.57.6 조합에 선택 설치된
+  `torchao 0.10.0`이 호환되지 않는 문제를 실제 오류로 확인했다. OPD-study는
+  torchao를 사용하지 않으므로 optional CUDA 셀에서만 `<0.16`을 감지·제거하는
+  guard를 추가했다. 기본 CPU-safe 경로는 어떤 package도 제거하지 않는다.
+- 같은 hosted T4/cache에서 pinned Qwen3-0.6B student와 Qwen3-1.7B teacher로
+  LoRA와 QLoRA sampled reverse-KL OPD를 각각 한 스텝 실행했다. 두 실행 모두
+  adapter, optimizer checkpoint, metrics, one-row validation, TensorBoard와
+  experiment-card 계약을 통과했고 마지막 셀은 `Selected CUDA smoke paths
+  completed.`를 출력했다.
+- exact 값과 package/model/data revision, shard checksum, 한계는
+  `docs/research/colab-cuda-smoke-2026-08-19.json`에 보존했다. 한 스텝의 0점
+  exact accuracy는 성능 결과가 아니라 배관 검증임을 계속 명시한다.

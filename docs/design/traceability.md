@@ -13,13 +13,13 @@ links each claim to checked-in, executable evidence; generated artifacts stay ig
 | 6 | laptop and server presets | pinned configs, guarded real runner, honest status | `configs/`, `research/`, hardware guide | implemented |
 | 7 | source traceability | 24 unique records and notebook source IDs | `docs/sources.yml`, `scripts/check_sources.py` | verified |
 | 8 | compatible licenses and attribution | Apache clean-room policy and source license gates | `LICENSE`, `NOTICE`, third-party notices | verified |
-| 9 | test/lint/type/notebook/link/parity quality | hermetic venv: 35 tests + 20 subtests, Ruff, strict mypy, 24 executed notebooks, source/link/parity; 3-OS matrix defined | `scripts/quality_gate.py`, `.github/workflows/ci.yml`, `PROGRESS.md` | verified locally |
+| 9 | test/lint/type/notebook/link/parity quality | hermetic venv plus passing Linux/macOS/Windows × Python 3.10/3.12 CI; nightly reruns 24 notebooks/source/link/snapshot | `scripts/quality_gate.py`, `.github/workflows/ci.yml`, `PROGRESS.md` | verified |
 | 10 | discoverable install/quickstart/paths/hardware/help | bilingual entrypoints and local link audit | `README.md`, `README.ko.md`, docs | verified |
 | 11 | path/repo/origin match | origin verified; final workspace-safe rename pending | `PROGRESS.md` C0/C9 | implemented |
 | 12 | honest experiment record | env/dependency/config hashes, memory/time, limits | `reporting.py`, generated cards, artifact test | verified |
 | 13 | toy and GSM8K actual train; dataset metadata | deterministic toy and pinned real-shard mini train | `test_data.py`, `test_research_gates.py`, results | verified |
 | 14 | `python -m opd_study.demo` report/playground/TB | raw response matrix, entropy/FKL/RKL, prompt/interactive mode, safe checkpoints, HTML/2×PNG/JSON/JSONL/TB assertions | `tests/test_training_and_artifacts.py` | verified |
-| 15 | Linux/macOS/Windows CPU + Colab; device guards | local macOS CPU + Colab headless; remote jobs await publish | workflows, Colab notebook, hardware guide | external-manual |
+| 15 | Linux/macOS/Windows CPU + Colab; device guards | 3-OS remote CI; hosted T4 default, LoRA and QLoRA runs; incompatible optional torchao guard | workflows, Colab notebook, CUDA evidence, hardware guide | verified |
 
 ## G1–G8 mapping
 

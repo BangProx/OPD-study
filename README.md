@@ -130,8 +130,8 @@ The `research` extra requires PyTorch 2.2+ and preflight verifies package import
 any download. Core toy lessons remain compatible with PyTorch 2.1+.
 
 The two acceptance flags authorize roughly 5.57GB of pinned model weights plus the
-2.73MB dataset. This command is implemented but remains **UNVERIFIED** on the current
-CPU-only host; no Qwen result is bundled or claimed.
+2.73MB dataset. The local macOS host is CPU-only, while one LoRA update was
+**EXECUTED** on a hosted Colab T4. It is a wiring check, not a benchmark result.
 
 On a validated NVIDIA runtime, select the checked QLoRA preset instead:
 
@@ -142,7 +142,9 @@ python -m opd_study research-train \
 ```
 
 It never falls back to full fine-tuning. The Colab notebook contains the same command
-behind `RUN_OPTIONAL_QWEN_QLORA = False`.
+behind `RUN_OPTIONAL_QWEN_QLORA = False`. One QLoRA update was also **EXECUTED** on
+the same hosted T4. See the exact revisions, environment, metrics and limitations in
+the [CUDA smoke evidence](docs/research/colab-cuda-smoke-2026-08-19.json).
 
 ## Fidelity and educational simplifications
 

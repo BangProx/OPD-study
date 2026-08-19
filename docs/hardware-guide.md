@@ -12,14 +12,20 @@ device raises an error. CPU fallback happens only with `--allow-device-fallback`
 | Windows CPU | supported/CI | possible but impractical | blocked |
 | Windows + NVIDIA CUDA | supported target | intended | requires CI/manual CUDA evidence |
 | macOS CPU/MPS | CPU supported; MPS capability-probed | LoRA only if memory permits | blocked; no full-FT fallback |
-| Colab | CPU toy quickstart | GPU LoRA opt-in | only after runtime probe |
+| Colab | CPU toy quickstart | T4 LoRA opt-in, executed | T4 QLoRA opt-in, executed |
 
 Current local evidence (2026-08-19): macOS arm64, Python 3.10.12, PyTorch 2.1.0,
-CPU selected; CUDA and MPS unavailable. Qwen training and QLoRA were not executed.
+CPU selected; CUDA and MPS unavailable locally. Hosted Colab evidence on the same date
+uses a Tesla T4 and completes one LoRA plus one QLoRA update for the pinned laptop pair.
 An isolated Python 3.12/PyTorch 2.13.0 environment passed real imports for the pinned
 `research` dependency ranges and the full quality gate. The research extra deliberately
 requires PyTorch 2.2+; preflight reports version and import incompatibilities before any
 dataset or model download.
+
+The observed Colab image paired Transformers 4.57.6 with optional `torchao 0.10.0`,
+which current Transformers rejects. The notebook's opt-in path removes `torchao` only
+when it is installed below 0.16; OPD-study does not depend on that package. The guard
+does nothing on local runs, compatible Colab images, and the default no-model path.
 
 ## Commands
 

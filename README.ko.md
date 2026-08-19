@@ -128,8 +128,8 @@ python -m opd_study research-train \
 import까지 확인합니다. CPU toy 강의는 계속 PyTorch 2.1 이상에서 동작합니다.
 
 두 동의 flag는 약 5.57GB의 고정 모델 weight와 2.73MB 데이터 다운로드를
-허용합니다. 명령은 구현했지만 현재 CPU-only 호스트에서는 **UNVERIFIED**이며,
-Qwen 결과를 실행한 것처럼 제공하지 않습니다.
+허용합니다. 로컬 macOS 호스트는 CPU-only지만 hosted Colab T4에서 LoRA 한
+스텝을 **실행 완료**했습니다. 이는 배관 검사이지 benchmark 결과가 아닙니다.
 
 검증된 NVIDIA 환경에서는 별도 QLoRA preset을 선택합니다.
 
@@ -140,7 +140,9 @@ python -m opd_study research-train \
 ```
 
 실패 시 full fine-tuning으로 전환하지 않습니다. Colab에도 같은 명령이
-`RUN_OPTIONAL_QWEN_QLORA = False` 뒤에 기본 비활성 상태로 들어 있습니다.
+`RUN_OPTIONAL_QWEN_QLORA = False` 뒤에 기본 비활성 상태로 들어 있습니다. 같은
+hosted T4에서 QLoRA 한 스텝도 **실행 완료**했습니다. 정확한 revision·환경·metric·
+한계는 [CUDA smoke 증거](docs/research/colab-cuda-smoke-2026-08-19.json)에 있습니다.
 
 ## 논문 충실도와 교육용 단순화
 
