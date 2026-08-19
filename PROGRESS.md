@@ -167,3 +167,14 @@
 - exact 값과 package/model/data revision, shard checksum, 한계는
   `docs/research/colab-cuda-smoke-2026-08-19.json`에 보존했다. 한 스텝의 0점
   exact accuracy는 성능 결과가 아니라 배관 검증임을 계속 명시한다.
+
+## 2026-08-19 — C9 최종 인계
+
+- 최종 CUDA 증거 commit `99a0866`에서 core CI `32255377916`은 Linux/macOS/
+  Windows × Python 3.10/3.12와 research import를 모두 통과했다. 수동 실행한
+  nightly `32255392705`도 24개 notebook 재실행, Colab/source/link/literature
+  검사와 artifact 업로드를 통과했다.
+- worktree와 `origin/main`이 같은 HEAD임을 확인하고, sibling target이 없음을
+  검사한 뒤 로컬 디렉터리를 `/Users/bangbyeonghun/Documents/nlp/OPD-study`로
+  이동했다. 최종 폴더명, GitHub repository 이름, origin URL이 모두
+  `OPD-study`로 일치한다.

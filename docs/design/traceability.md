@@ -15,7 +15,7 @@ links each claim to checked-in, executable evidence; generated artifacts stay ig
 | 8 | compatible licenses and attribution | Apache clean-room policy and source license gates | `LICENSE`, `NOTICE`, third-party notices | verified |
 | 9 | test/lint/type/notebook/link/parity quality | hermetic venv plus passing Linux/macOS/Windows × Python 3.10/3.12 CI; nightly reruns 24 notebooks/source/link/snapshot | `scripts/quality_gate.py`, `.github/workflows/ci.yml`, `PROGRESS.md` | verified |
 | 10 | discoverable install/quickstart/paths/hardware/help | bilingual entrypoints and local link audit | `README.md`, `README.ko.md`, docs | verified |
-| 11 | path/repo/origin match | origin verified; final workspace-safe rename pending | `PROGRESS.md` C0/C9 | implemented |
+| 11 | path/repo/origin match | local `OPD-study` path, repository name and GitHub origin verified at final handoff | `PROGRESS.md` C0/C9 | verified |
 | 12 | honest experiment record | env/dependency/config hashes, memory/time, limits | `reporting.py`, generated cards, artifact test | verified |
 | 13 | toy and GSM8K actual train; dataset metadata | deterministic toy and pinned real-shard mini train | `test_data.py`, `test_research_gates.py`, results | verified |
 | 14 | `python -m opd_study.demo` report/playground/TB | raw response matrix, entropy/FKL/RKL, prompt/interactive mode, safe checkpoints, HTML/2×PNG/JSON/JSONL/TB assertions | `tests/test_training_and_artifacts.py` | verified |
